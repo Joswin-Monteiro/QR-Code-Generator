@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      svelte-qrcode:
+        specifier: ^1.0.1
+        version: 1.0.1
     devDependencies:
       '@eslint/compat':
         specifier: ^1.2.5
@@ -871,6 +875,9 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
+  qrious@4.0.2:
+    resolution: {integrity: sha512-xWPJIrK1zu5Ypn898fBp8RHkT/9ibquV2Kv24S/JY9VYEhMBMKur1gHVsOiNUh7PHP9uCgejjpZUHUIXXKoU/g==}
+
   readdirp@4.1.2:
     resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
     engines: {node: '>= 14.18.0'}
@@ -928,6 +935,9 @@ packages:
     peerDependenciesMeta:
       svelte:
         optional: true
+
+  svelte-qrcode@1.0.1:
+    resolution: {integrity: sha512-l1RcxDWkQqtBWUkolYee/IHGVKSgm1I2PdF8yVoIRqzKCc3kXpCXSVsMfrMSavWW2/BXvKu5Orv+JGbrO5onsw==}
 
   svelte2tsx@0.7.40:
     resolution: {integrity: sha512-Fgqe2lzC9DWT/kQTIXqN39O2ot9rUqzUu9dqpbuI6EsaEJ6+RSXVmXnxcNYMlKb2LRPDoIg9TVzXYWwi0zhCmQ==}
@@ -1725,6 +1735,8 @@ snapshots:
 
   punycode@2.3.1: {}
 
+  qrious@4.0.2: {}
+
   readdirp@4.1.2: {}
 
   resolve-from@4.0.0: {}
@@ -1793,6 +1805,10 @@ snapshots:
       postcss-selector-parser: 7.1.0
     optionalDependencies:
       svelte: 5.34.8
+
+  svelte-qrcode@1.0.1:
+    dependencies:
+      qrious: 4.0.2
 
   svelte2tsx@0.7.40(svelte@5.34.8)(typescript@5.8.3):
     dependencies:

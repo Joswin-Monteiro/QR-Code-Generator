@@ -55,5 +55,8 @@
 		"onlyBuiltDependencies": [
 			"esbuild"
 		]
+	},
+	"dependencies": {
+		"svelte-qrcode": "^1.0.1"
 	}
 }
