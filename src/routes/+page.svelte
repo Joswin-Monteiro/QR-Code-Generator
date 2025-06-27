@@ -1,19 +1,29 @@
 <script>
 	import QrCode from 'svelte-qrcode';
+	import { innerWidth } from 'svelte/reactivity/window';
 
 	let value = $state('');
 	let linkValue = $state('');
-	let generateQR = $state(false);
-	let isTextEmpty = $state(true);
+	let size = $state(0);
+	let isPreview = $state(true);
+
+	if (innerWidth.current < 500) {
+		size = 250;
+	} else {
+		size = 400;
+	}
 
 	function generate() {
-		generateQR = true;
-		if (value != '') {
-			isTextEmpty = false;
-			linkValue = value.trim();
+		linkValue = value.trim();
+		if (linkValue == '') {
+			isPreview = true;
 		} else {
-			console.log('Text is empty!');
-			isTextEmpty = true;
+			isPreview = false;
+		}
+		if (innerWidth.current < 500) {
+			size = 250;
+		} else {
+			size = 400;
 		}
 	}
 
@@ -26,19 +36,25 @@
 	<div id="box2">
 		<h1 id="title">QR Code Generator</h1>
 
-		<label for="link">Enter link:</label>
-		<input type="text" bind:value name="link" onkeydown={handleKeyDown} />
-		<button onclick={generate}>Generate</button>
+		<div class="container">
+			<label for="link">Enter text:</label>
+			<input
+				type="text"
+				bind:value
+				name="link"
+				onkeydown={handleKeyDown}
+				placeholder="Ex: https://www.example.com"
+			/>
+			<button onclick={generate}>Generate</button>
+		</div>
 
-		{#if generateQR}
-			{#if isTextEmpty}
-				<h1>Enter some text</h1>
+		<div class="container" id="container2" style:height={`${size}px;`}>
+			{#if isPreview}
+				<QrCode value="https://www.example.com" {size} color="#d1d1d1" />
 			{:else}
-				<div>
-					<QrCode value={linkValue} />
-				</div>
+				<QrCode value={linkValue} {size} />
 			{/if}
-		{/if}
+		</div>
 	</div>
 </div>
 
@@ -60,6 +76,18 @@
 		align-items: center;
 		justify-content: center;
 		height: 100dvh;
-		border: 1px solid blue;
+	}
+
+	.container {
+		text-align: center;
+	}
+
+	#container2 {
+		margin: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: 2rem;
 	}
 </style>
