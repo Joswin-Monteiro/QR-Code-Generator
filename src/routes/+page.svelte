@@ -30,6 +30,14 @@
 	function handleKeyDown(event) {
 		if (event.key == 'Enter') generate();
 	}
+
+	function focus(node) {
+		node.focus();
+	}
+
+	$effect(() => {
+		if (value) value.focus({ focusVisible: true });
+	});
 </script>
 
 <div id="box">
@@ -44,6 +52,7 @@
 				name="link"
 				onkeydown={handleKeyDown}
 				placeholder="Ex: https://www.example.com"
+				use:focus
 			/>
 			<button onclick={generate}>Generate</button>
 		</div>
